@@ -19,7 +19,7 @@ import { eventBus } from "@/eventBus";
         data() {
             return {
                 borderStyle: '',
-                currentIndex: 0,
+                currentIndex: -1,
                 daysContainer: 'days-container',
                 activeClass: 'active'
             }

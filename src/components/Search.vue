@@ -1,6 +1,6 @@
 <template>
     <div class="search-container">
-        <input type="text" id="autocomplete" v-model="searchCity" class="search-input" v-on:keyup.enter="onEnter" @keydown="showCities()">
+        <input type="text" id="autocomplete" v-model="searchCity" class="search-input" v-on:keyup.enter="onEnter" @keydown="showCities()" placeholder="Enter city name">
         <img class="location-icon" src="../assets/location.png" alt="">
         <img class="search-icon" src="../assets/search.png" alt="" @click="onEnter">
     </div>
