@@ -60,17 +60,18 @@ import { eventBus } from "@/eventBus";
                 dayData: null,
                 chartData: {},
                 chartOptions: {
-                layout: {
-                    padding: {left: 10, right: 5, top: 5, bottom: 2}
-                },
-                scales: {
-                    xAxes: [{
-                        display: false // this hides the x-axis
-                    }],
-                    yAxes: [{
-                        display: false // this hides the x-axis
-                    }]
-                }
+                    height: "150px",
+                    layout: {
+                        padding: {left: 10, right: 5, top: 5, bottom: 2},
+                    },
+                    scales: {
+                        xAxes: [{
+                            display: false // this hides the x-axis
+                        }],
+                        yAxes: [{
+                            display: false // this hides the x-axis
+                        }]
+                    }
                 }       
             }
         },
@@ -121,7 +122,7 @@ import { eventBus } from "@/eventBus";
 .weather-degree-container{
     display: flex;
     justify-content: space-between;
-    padding: 2rem 0;
+    padding-top: 2rem;
 }
 .weather-degree{
     font-weight: 500;
@@ -172,7 +173,8 @@ import { eventBus } from "@/eventBus";
     padding: 1rem 0;
 }
 #chart-2{
-    height: 150px;
+    height: 135px !important;
+    margin-top: -40px;
 }
 .chartjs-render-monitor{
     background: yellow !important;
