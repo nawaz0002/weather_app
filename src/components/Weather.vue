@@ -174,12 +174,20 @@ import { eventBus } from "@/eventBus";
 }
 #chart-2{
     height: 135px !important;
-    margin-top: -40px;
+
+}
+#chart-1{
+    height: 135px !important;
+    margin-top: 0px;
 }
 .chartjs-render-monitor{
     background: yellow !important;
 }
 @media(max-width: 320px){
+    #chart-1{
+        height: 135px !important;
+        margin-top: -35px;
+    }
     .weather-container{
         padding: 0 1rem;
     }
