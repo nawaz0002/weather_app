@@ -33,7 +33,7 @@ export default {
         geoLocationApi.get()
             .then(response =>  {
                 console.log(response.data)
-                this.getWeatherData(response.data.city)
+                // this.getWeatherData(response.data.city)
             })
     },
     getWeatherData(name) {

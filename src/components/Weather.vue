@@ -12,7 +12,10 @@
                     <p class="time">{{new Date(data.dt_txt).toLocaleString('en-US', { hour: 'numeric', hour12: true })}}</p>
                 </div>
             </div>
+
             <div v-else class="search-text">Select day to see the details</div>
+            
+            <line-chart :data="chartData"></line-chart>
             <div class="pressure-humidity">
                 <div class="pressure-container">
                     <p class="pressure-text">Pressure</p>
@@ -53,15 +56,17 @@ import { eventBus } from "@/eventBus";
         data() {
             return {
                 dayData: null,
+                chartData: {}            
             }
         },
         methods: {
 
         },
         watch: {
-
+            
         },
         mounted() {
+            console.log(this.dataDetails)
         },
         created() {
             eventBus.$on("send-date", date => {
@@ -69,6 +74,23 @@ import { eventBus } from "@/eventBus";
                     this.dayData = this.dataDetails.list.filter(data => { 
                         return data.dt_txt.split(" ")[0] == date.split(" ")[0]
                     })
+                    this.dayData.map(obj => {
+                        // console.log(obj)
+                        this.chartData["'"+obj.dt_txt+"'"] = obj.main.temp
+                        // this.chartData['2020-06-24 00:00:00'] = 300.16
+                        // this.chartData['2020-06-24 00:12:00'] = 301.16
+                        // this.chartData[obj.dt_txt] = obj.main.temp;
+                    })
+                    console.log(this.dayData)
+                    console.log(this.chartData)
+//                     this.chartData = {'2020-06-24 00:00:00': 300.16,
+// '2020-06-24 03:00:00': 301.46,
+// '2020-06-24 06:00:00': 302.63,
+// '2020-06-24 09:00:00': 305.1,
+// '2020-06-24 12:00:00': 304.75,
+// '2020-06-24 15:00:00': 300.95,
+// '2020-06-24 18:00:00': 299.75,}
+                    // console.log(this.chartData)
                 }
 
             })
