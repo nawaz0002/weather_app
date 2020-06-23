@@ -7,7 +7,8 @@
                 <img class="weather-icon" :src="'http://openweathermap.org/img/w/'+(dataDetails.list[0].weather[0].icon)+'.png'" alt="">
             </div>
 
-            <line-chart :data="chartData"></line-chart>
+            <line-chart :data="chartData" :library="chartOptions"></line-chart>
+
             <div class="day-forecast-container" v-if="dayData">
                 <div class="time-temperature" v-for="(data, index) in dayData" :key="index">
                     <h5 class="time-degree">{{(data.main.temp - 273).toFixed()}}&nbsp; &#8451;</h5>
@@ -57,7 +58,20 @@ import { eventBus } from "@/eventBus";
         data() {
             return {
                 dayData: null,
-                chartData: {}            
+                chartData: {},
+                chartOptions: {
+                layout: {
+                    padding: {left: 10, right: 5, top: 5, bottom: 2}
+                },
+                scales: {
+                    xAxes: [{
+                        display: false // this hides the x-axis
+                    }],
+                    yAxes: [{
+                        display: false // this hides the x-axis
+                    }]
+                }
+                }       
             }
         },
         methods: {
