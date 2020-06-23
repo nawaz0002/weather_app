@@ -70,18 +70,31 @@ import { eventBus } from "@/eventBus";
 .active{
     border: 1px solid rgb(67, 133, 255);
 }
+.day-condition{
+    color: rgb(116, 116, 116)
+}
 @media(max-width: 320px){
     .header-container{
-        padding: 1rem;
+        padding: 1rem 0rem;
         overflow-y: auto;
     }
     .days-container{
-        flex: 0 0 16%;
-        max-width: 16%;
-        padding: 0.3rem 0.7rem;
+        flex: 0 0 20%;
+        max-width: 20%;
+        padding: 0rem 0rem;
+        
+    }
+    .day-icon{
+        margin: -8px 0;
+    }
+    .day{
+        font-size: 14px;
+    }
+    .day-temp{
+        font-size: 14px;
     }
     .day-condition{
-        font-size: 13px;
+        font-size: 12px;
     }
 }
 </style>

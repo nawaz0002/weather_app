@@ -6,17 +6,17 @@
                 <h2 class="weather-degree">{{(dataDetails.list[0].main.temp - 273).toFixed(2)}}&nbsp; &#8451;</h2>
                 <img class="weather-icon" :src="'http://openweathermap.org/img/w/'+(dataDetails.list[0].weather[0].icon)+'.png'" alt="">
             </div>
+
+            <line-chart :data="chartData"></line-chart>
             <div class="day-forecast-container" v-if="dayData">
                 <div class="time-temperature" v-for="(data, index) in dayData" :key="index">
                     <h5 class="time-degree">{{(data.main.temp - 273).toFixed()}}&nbsp; &#8451;</h5>
                     <p class="time">{{new Date(data.dt_txt).toLocaleString('en-US', { hour: 'numeric', hour12: true })}}</p>
-                    <!-- <p class="time">{{new Date(data.dt_txt).toLocaleString()}}</p> -->
                 </div>
             </div>
 
             <div v-else class="search-text">Select day to see the details</div>
-            
-            <line-chart :data="chartData"></line-chart>
+        
             <div class="pressure-humidity">
                 <div class="pressure-container">
                     <p class="pressure-text">Pressure</p>
