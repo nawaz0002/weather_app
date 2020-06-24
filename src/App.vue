@@ -1,8 +1,11 @@
 <template>
   <div id="app">
     <Search />
-    <Header :dataDetails="fiveDataData" :err="showErr"/>
-    <Weather :dataDetails="weatherData" :err="showErr" />
+      <Header :dataDetails="fiveDataData" :err="showErr"/>
+    <div>
+      <Weather :dataDetails="weatherData" :err="showErr"/>
+    </div>
+    <div v-if="showLoading"><Loader /></div>
   </div>
 </template>
 
@@ -11,6 +14,8 @@ import Search from './components/Search.vue'
 import Header from './components/Header.vue'
 import Weather from './components/Weather.vue'
 import myApi from './api/weather'
+import Loader from './components/Loader'
+
 import geoLocationApi from './api/geolocation'
 import { eventBus } from "@/eventBus";
 export default {
@@ -20,13 +25,15 @@ export default {
       weatherData: "",
       fiveDataData: [],
       cityName: '',
-      showErr: ''
+      showErr: '',
+      showLoading: false
     }
   },
   components: {
     Weather,
     Header,
-    Search
+    Search,
+    Loader
   },
   methods: {
     geoLocationData() {
@@ -42,7 +49,7 @@ export default {
         .then(response =>  {
           console.log(response.data)
             this.weatherData = response.data
-
+            this.showLoading = false
             const seen = new Set();
             const arr = response.data.list
             const filteredArr = arr.filter(el => {
@@ -55,6 +62,7 @@ export default {
         .catch(err => {
           this.fiveDataData = []
           this.weatherData = ''
+          this.showLoading = false
           this.showErr = 'Incorrect city name';
           console.log(err)
         })
@@ -68,6 +76,7 @@ export default {
   created() {
     eventBus.$on('send-city' ,(name) => {
       console.log(name)
+      this.showLoading = true
       if(name){
         this.getWeatherData(name)
       }
